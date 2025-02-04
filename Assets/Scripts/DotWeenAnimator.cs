@@ -8,9 +8,11 @@ using UnityEngine.UI;
 public class DotWeenAnimator : MonoBehaviour
 {
     [SerializeField] private float duration;
+    [SerializeField] private AnimationCurve curve;
+
     //1. Movement
-    //[SerializeField] private Transform movable;
-    //[SerializeField] private Transform targetPosition;
+    [SerializeField] private Transform movable;
+    [SerializeField] private Transform targetPosition;
 
     //2. Transparency
     [SerializeField] private Image fadePanel;
@@ -24,6 +26,13 @@ public class DotWeenAnimator : MonoBehaviour
 
         fadePanel.DOFade(0, duration)
             .OnComplete(OnFadeComplete);
+
+        //fadePanel.fillAmount = 0;
+        //fadePanel.DOFillAmount(0, duration)
+        //    .SetEase(Ease.InOutBounce);
+
+        tween = movable.DOMove(targetPosition.position, duration)
+        .SetEase(curve);
 
         //fadePanel.DOFade(0, duration)
         //    .OnComplete(() =>
