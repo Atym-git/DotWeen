@@ -64,18 +64,18 @@ public class PlayerMovement : MonoBehaviour
     }
     private void RotateLeft()
     {
-        Quaternion quaternion = new Quaternion(transform.rotation.w, transform.rotation.x, transform.rotation.y, 90);
+        //Quaternion quaternion = new Quaternion(transform.rotation.w, transform.rotation.x, transform.rotation.y, 90);
 
-        Vector3 rot = transform.eulerAngles - to;
+        //Vector3 rot = transform.eulerAngles - to;
 
         
 
-        transform.DORotateQuaternion(quaternion, _rotateDuration);
+        //transform.DORotateQuaternion(quaternion, _rotateDuration);
     }
     private void RotateRight()
     {
-        Quaternion revQuaternion = new Quaternion(transform.rotation.w, transform.rotation.x, transform.rotation.z, -90);
+        //Quaternion revQuaternion = new Quaternion(transform.rotation.w, transform.rotation.x, transform.rotation.z, -90);
 
-        transform.DORotateQuaternion(revQuaternion, _rotateDuration);
+        //transform.DORotateQuaternion(revQuaternion, _rotateDuration);
     }
 }

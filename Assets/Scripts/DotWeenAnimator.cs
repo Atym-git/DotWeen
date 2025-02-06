@@ -15,24 +15,20 @@ public class DotWeenAnimator : MonoBehaviour
     [SerializeField] private Transform targetPosition;
 
     //2. Transparency
-    [SerializeField] private Image fadePanel;
+    [SerializeField] private Image _timer;
 
     private Tween tween;
 
-    void Start()
+    private void Start()
     {
         //1. Movement
         //movable.DOLocalMove(targetPosition.position, duration);
 
-        fadePanel.DOFade(0, duration)
-            .OnComplete(OnFadeComplete);
+        //fadePanel.DOFade(0, duration)
+        //    .OnComplete(OnFadeComplete);
 
-        //fadePanel.fillAmount = 0;
-        //fadePanel.DOFillAmount(0, duration)
-        //    .SetEase(Ease.InOutBounce);
-
-        tween = movable.DOMove(targetPosition.position, duration)
-        .SetEase(curve);
+        //tween = movable.DOMove(targetPosition.position, duration)
+        //.SetEase(curve);
 
         //fadePanel.DOFade(0, duration)
         //    .OnComplete(() =>
@@ -51,18 +47,37 @@ public class DotWeenAnimator : MonoBehaviour
         //tween.Pause();
         //tween.Rewind();
 
-        float somefloat = 10;
-        DOTween.To(() => somefloat, x => somefloat = x,
-            1, duration)
-            .OnUpdate(() =>
-            {
-                Debug.Log(somefloat);
-            });
-    }
-    private void OnFadeComplete()
-    {
-        Debug.Log("Fade Completed!");
+        //float somefloat = 10;
+        //DOTween.To(() => somefloat, x => somefloat = x,
+        //    1, duration)
+        //    .OnUpdate(() =>
+        //    {
+        //        Debug.Log(somefloat);
+        //    });
     }
 
-    
+    private void FixedUpdate()
+    {
+        if (_timer.fillAmount >= 1)
+        {
+            _timer.fillAmount = 0;
+        }
+        if (_timer.fillAmount <= 0)
+        {
+            DoFillAmount();
+        }
+    }
+
+    private void DoFillAmount()
+    {
+        _timer.fillAmount = 0;
+        _timer.DOFillAmount(1, duration);
+        Debug.Log("Start");
+    }
+    //private void OnFadeComplete()
+    //{
+    //    Debug.Log("Fade Completed!");
+    //}
+
+
 }
